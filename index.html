@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muhammad Waji ul Hassan - Portfolio</title>
+    <link rel="stylesheet" href="index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Include CSS here or link to an external stylesheet */
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <h1>Muhammad Waji ul Hassan</h1>
+            <p>Web Developer</p>
+        </div>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="#about">About Me</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+    <section id="about" class="fade-in">
+        <div class="container">
+            <h2>About Me</h2>
+            <p>I am a passionate web developer with a strong foundation in front-end technologies. I enjoy creating responsive, user-friendly websites and applications that provide a seamless experience across devices.</p>
+            <button class="btn" id="btn">Read More</button>
+            <div id="more">
+                <p>My skills include HTML5, CSS3, JavaScript. I also have experience with server-side languages like Node.js.</p>
+                <p>Outside of coding, I am dedicated to continuous learning and staying updated with the latest web development trends and technologies. I thrive in collaborative environments and am eager to tackle new challenges.</p>
+            </div>
+        </div>
+    </section>
+    <section id="skills" class="fade-in">
+        <div class="container">
+            <h2>Skills</h2>
+            <div class="skills-container">
+                <div class="skill">
+                    <span class="skill-name">HTML5</span>
+                    <div class="skill-level" data-level="95%">95%</div>
+                </div>
+                <div class="skill">
+                    <span class="skill-name">CSS3</span>
+                    <div class="skill-level" data-level="85%">85%</div>
+                </div>
+                <div class="skill">
+                    <span class="skill-name">JavaScript</span>
+                    <div class="skill-level" data-level="80%">80%</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="projects" class="fade-in">
+        <div class="container">
+            <h2>Projects</h2>
+            <div class="project">
+                <h3>Responsive Portfolio Website</h3>
+                <p>I have created a fully responsive personal portfolio website using HTML, CSS, and JavaScript. The website features a clean and modern design, interactive elements, and smooth animations to enhance the user experience. It includes sections for About Me, Projects, and Contact.</p>
+            </div>
+        </div>
+    </section>
+    <section id="contact" class="fade-in">
+        <div class="container">
+            <h2>Contact</h2>
+            <div class="contact-details">
+                <p><strong>Email:</strong> <a href="mailto:your.email@example.com">hassansyedwajiul@gmail.com</a></p>
+                <p><strong>Phone:</strong> +923135758224</p>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Muhammad Waji ul Hassan. All rights reserved.</p>
+        </div>
+    </footer>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Smooth scroll
+            document.querySelectorAll('nav ul li a').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // Function to handle 'Read More' button
+            function toggleReadMore() {
+                var moreContent = document.getElementById("more");
+                var readMoreBtn = document.getElementById("btn");
+
+                if (moreContent.style.display === "none" || moreContent.style.display === "") {
+                    moreContent.style.display = "block";
+                    readMoreBtn.textContent = "Read Less";
+                } else {
+                    moreContent.style.display = "none";
+                    readMoreBtn.textContent = "Read More";
+                }
+            }
+
+            document.getElementById("btn").addEventListener("click", toggleReadMore);
+            document.getElementById("more").style.display = "none";
+
+            // Animation for skill levels
+            const skillLevels = document.querySelectorAll('.skill-level');
+            skillLevels.forEach(skill => {
+                const level = skill.getAttribute('data-level');
+                skill.style.width = level; // Adjust as needed, you might use this for a progress bar effect
+                skill.style.animation = 'progress 2s ease-in-out forwards';
+            });
+
+            // Scroll animation
+            function isElementInViewport(el) {
+                const rect = el.getBoundingClientRect();
+                return (
+                    rect.top >= 0 &&
+                    rect.left >= 0 &&
+                    rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                    rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+                );
+            }
+
+            function handleScrollAnimation() {
+                const sections = document.querySelectorAll('.fade-in');
+                sections.forEach(section => {
+                    if (isElementInViewport(section)) {
+                        section.classList.add('visible');
+                    }
+                });
+            }
+
+            window.addEventListener('scroll', handleScrollAnimation);
+            handleScrollAnimation(); // Initial check
+        });
+    </script>
+</body>
+
+</html>
